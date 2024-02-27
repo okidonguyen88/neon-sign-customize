@@ -163,8 +163,11 @@ class Neon_Sign_Customize
 		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
 		$this->loader->add_action('admin_menu', $plugin_admin, 'add_neon_sign_menu');
 
-		// custom price
-		$this->loader->add_action('woocommerce_product_data_panels', $plugin_admin, 'add_custom_fields');
+		$this->loader->add_action('add_meta_boxes', $plugin_admin, 'custom_product_meta_box_one');
+		$this->loader->add_action('woocommerce_admin_process_product_object', $plugin_admin, 'save_custom_product_meta_box_one',10, 1);		
+		$this->loader->add_action('add_meta_boxes', $plugin_admin, 'custom_product_meta_box_two');
+		$this->loader->add_action('woocommerce_admin_process_product_object', $plugin_admin, 'save_custom_product_meta_box_two', 10, 1);
+		// $this->loader->add_action('woocommerce_product_data_panels', $plugin_admin, 'add_custom_fields');
 		$this->loader->add_action('woocommerce_process_product_meta_neon_sign', $plugin_admin, 'save_custom_fields');
 		$this->loader->add_action('woocommerce_before_calculate_totals', $plugin_admin, 'calculate_custom_price_total');
 		$this->loader->add_filter('woocommerce_get_item_data', $plugin_admin, 'display_custom_item_data', 10, 2);
@@ -179,6 +182,54 @@ class Neon_Sign_Customize
 		$this->loader->add_action('wp_ajax_nopriv_delete_font', $plugin_admin, 'delete_font');
 
 
+		// Ajax manage color
+		// add
+		$this->loader->add_action('wp_ajax_add_new_color', $plugin_admin, 'add_new_color');
+		$this->loader->add_action('wp_ajax_nopriv_add_new_color', $plugin_admin, 'add_new_color');
+		// delete
+		$this->loader->add_action('wp_ajax_delete_color', $plugin_admin, 'delete_color');
+		$this->loader->add_action('wp_ajax_nopriv_delete_color', $plugin_admin, 'delete_color');
+
+		// Ajax manage size
+		// add
+		$this->loader->add_action('wp_ajax_add_new_size', $plugin_admin, 'add_new_size');
+		$this->loader->add_action('wp_ajax_nopriv_add_new_size', $plugin_admin, 'add_new_size');
+		// delete
+		$this->loader->add_action('wp_ajax_delete_size', $plugin_admin, 'delete_size');
+		$this->loader->add_action('wp_ajax_nopriv_delete_size', $plugin_admin, 'delete_size');
+
+		// Ajax manage size
+		// add
+		$this->loader->add_action('wp_ajax_add_new_price', $plugin_admin, 'add_new_price');
+		$this->loader->add_action('wp_ajax_nopriv_add_new_price', $plugin_admin, 'add_new_price');
+		// delete
+		$this->loader->add_action('wp_ajax_delete_price', $plugin_admin, 'delete_price');
+		$this->loader->add_action('wp_ajax_nopriv_delete_price', $plugin_admin, 'delete_price');
+
+		// Ajax manage additional
+		// add
+		$this->loader->add_action('wp_ajax_add_new_additional', $plugin_admin, 'add_new_additional');
+		$this->loader->add_action('wp_ajax_nopriv_add_new_additional', $plugin_admin, 'add_new_additional');
+		// delete
+		$this->loader->add_action('wp_ajax_delete_additional', $plugin_admin, 'delete_additional');
+		$this->loader->add_action('wp_ajax_nopriv_delete_additional', $plugin_admin, 'delete_additional');
+
+		// Ajax manage backboard
+		// add
+		$this->loader->add_action('wp_ajax_add_new_backboard', $plugin_admin, 'add_new_backboard');
+		$this->loader->add_action('wp_ajax_nopriv_add_new_backboard', $plugin_admin, 'add_new_backboard');
+
+		// Ajax manage backboard_color
+		// add
+		$this->loader->add_action('wp_ajax_add_new_backboard_color', $plugin_admin, 'add_new_backboard_color');
+		$this->loader->add_action('wp_ajax_nopriv_add_new_backboard_color', $plugin_admin, 'add_new_backboard_color');
+		// delete
+		$this->loader->add_action('wp_ajax_delete_backboard_color', $plugin_admin, 'delete_backboard_color');
+		$this->loader->add_action('wp_ajax_nopriv_delete_backboard_color', $plugin_admin, 'delete_backboard_color');
+
+		// SETTING
+		$this->loader->add_action('wp_ajax_change_setting', $plugin_admin, 'change_setting');
+		$this->loader->add_action('wp_ajax_nopriv_change_setting', $plugin_admin, 'change_setting');
 
 
 
@@ -204,6 +255,10 @@ class Neon_Sign_Customize
 		//update item in cart		
 		$this->loader->add_action('wp_ajax_update_custom_data_in_cart', $plugin_public, 'update_custom_data_in_cart_ajax');
 		$this->loader->add_action('wp_ajax_nopriv_update_custom_data_in_cart', $plugin_public, 'update_custom_data_in_cart_ajax');
+
+		// SESSION SAVE
+		$this->loader->add_action('wp_ajax_session_save', $plugin_public, 'session_save_ajax');
+		$this->loader->add_action('wp_ajax_nopriv_session_save', $plugin_public, 'session_save_ajax');
 
 
 	}

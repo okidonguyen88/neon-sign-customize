@@ -3,56 +3,167 @@
  * included in this file.
  */
 
-/* Add styles for different neon colors and neon-text effect */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
 
-body {
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+:root {
   overflow: auto;
+  --size-height: "20cm x 20cm";
+  --size-width: "20cm x 20cm";
+  --primary-text-color: #ff5400;
 }
-.neon-red-text {
-  color: #fff; /* White color for the text */
-  text-shadow: 0 0 10px #f06, 0 0 20px #f06, 0 0 30px #f06; /* Red neon effect with multiple shadows */
+
+#nsc-text,
+#nsc-special {
+  padding: 10px;
+  border: solid 1px;
 }
-.neon-pink-text {
-  color: #fff; /* White color for the text */
-  text-shadow: 0 0 10px #ff1493, 0 0 20px #ff1493, 0 0 30px #ff1493; /* Pink neon effect with multiple shadows */
-}
-.neon-yellow-text {
-  color: #fff; /* White color for the text */
-  text-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00, 0 0 30px #ffff00; /* Yellow neon effect with multiple shadows */
-}
-.neon-purple-text {
-  color: #fff; /* White color for the text */
-  text-shadow: 0 0 10px #800080, 0 0 20px #800080, 0 0 30px #800080; /* Purple neon effect with multiple shadows */
+
+#nsc-select-plug-type {
+  border: solid 1px;
 }
 
 .nsc-wrapper {
-  z-index: 999;
-  position: fixed;
-  top: 0 /*var(--wp-admin--admin-bar--height)*/;
-  left: 0;
+  position: relative;
   width: 100%;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* scroll-snap-stop: always; */
 }
 
 .nsc-body {
-  display: flex;
   position: relative;
-  height: 100vh;
+  /* height: 100vh; */
   justify-content: space-between;
 }
 
+.nsc-img {
+  width: 100%;
+  height: 100% !important ;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.nsc-button {
+  color: white !important;
+  background-color: var(--primary-text-color) !important;
+}
+
 .nsc-main {
-  order: 0;
-  width: 60%;
+  border: 0;
+  padding: 0;
   position: relative;
-  /* min-width: 800px; */
-  height: auto;
-  background-image: url("https://images.pexels.com/photos/1101125/pexels-photo-1101125.jpeg");
-  background-size: cover;
+}
+
+#nsc-live-choose {
+  height: inherit;
+}
+
+#nsc-live-result .nsc-neon-live {
+  height: inherit;
+}
+
+.nsc-neon-live {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5%;
+  height: 100%;
+}
+
+.nsc-neon-live .nsc-price-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-size: 1rem;
+  font-weight: 800;
+  padding: 10px 20px;
+}
+
+.nsc-toggle-button {
+  padding: 15px;
+}
+
+.nsc-neon-live .nsc-toggle-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-size: 1rem;
+  font-weight: 800;
+  padding: 10px 20px;
+}
+
+.nsc-neon-live .nsc-toggle-mobile-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: white;
+  font-size: 1rem;
+  font-weight: 800;
+  padding: 10px 20px;
+}
+
+.nsc-neon-live .nsc-toggle-mobile {
+  margin-right: 5px;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  border: solid 1.5px white;
+}
+
+.nsc-neon-live .nsc-toggle-mobile:hover {
+  border: solid 1.5px var(--primary-text-color);
+  color: var(--primary-text-color);
+  /* background-color: white; */
+}
+
+.nsc-neon-live .nsc-background-wrapper {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  bottom: 0;
+  right: 0;
+  padding: 10px;
+  justify-content: flex-end;
+}
+
+.background-click {
+  width: 60px;
+  height: 60px;
+  border: solid 1.5px white;
+  position: relative;
+}
+
+.background-click.selected {
+  opacity: 1;
 }
 
 .nsc-backboard {
-  display: block;
   background: linear-gradient(
     135deg,
     rgba(255, 255, 255, 0.2),
@@ -64,54 +175,80 @@ body {
     rgba(0, 0, 0, 0.3) 0px 15px 25px, rgba(0, 0, 0, 0.1) 0px -2px 3px,
     rgba(0, 0, 0, 0.3) 0px 5px 10px;
 
-  /* inset: -5px -10px; */
+  display: flex;
+  justify-content: space-between;
   position: relative;
   padding: 20px;
+  margin: 100px 0px;
+  transition: transform 0.3s;
 }
 
-.nsc-text {
-  display: flex;
-  justify-content: center; /* Horizontally center content */
-  align-items: center; /* Vertically center content */
-  width: fit-content; /* Optional: Set the width of the container */
-  margin: 0 auto;
-  height: 100vh;
-}
-
-.nsc-text p {
-  font-size: 5rem;
-  text-align: center;
+.nsc-backboard p {
+  line-height: 1.2;
   color: aliceblue;
   margin-bottom: 0;
   z-index: 1;
   position: relative;
 }
 
-#nsc-text::before {
-  content: "Size: 21cm x 6cm";
+#nsc-backboard-height,
+#nsc-backboard-width {
   position: absolute;
-  bottom: 0; /* Position the label at the bottom of the nsc-text div */
-  left: 0; /* Position the label at the left of the nsc-text div */
-  padding: 5px; /* Optional: Add padding to make the label look nicer */
-  background-color: rgba(
-    0,
-    0,
-    0,
-    0.7
-  ); /* Optional: Add a semi-transparent background */
-  color: white; /* Optional: Set the label text color */
-  font-size: 22px; /* Optional: Set the font size of the label */
+  text-align: center;
+  text-shadow: 2px 2px rgb(255, 84, 0);
+  color: white;
+  font-size: 0.9rem;
 }
 
-.nsc-price-wrapper {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
-  font-size: 1rem;
-  font-weight: 800;
-  padding: 10px 20px;
+#nsc-backboard-height {
+  top: 0px;
+  left: -20px;
+  width: 2px;
+  height: 100%;
+  line-height: 1.2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  padding-right: 10px;
+  border-right: solid 1.5px rgb(255, 255, 255);
+}
+
+#nsc-backboard-width {
+  bottom: -10px;
+  left: 0px;
+  content: var(--size-width);
+  width: 100%;
+  height: 2px;
+  border-top: solid 1.5px rgb(255, 255, 255);
+}
+
+.carousel-content {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: #fff; /* Text color on the slide */
+  padding: 20px; /* Adjust padding as needed */
+  width: 100vw;
+}
+
+.nsc-toggle-wrapper div {
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  background-color: rgb(40, 48, 61);
+}
+
+#nsc-toggle-light-button,
+#nsc-toggle-background-button {
+  top: 68px;
+  background: none;
+  z-index: 999;
+}
+
+.nsc-toggle-on {
+  background-color: var(--primary-text-color);
 }
 
 .nsc-price-wrapper .total-price {
@@ -119,30 +256,165 @@ body {
 }
 
 .nsc-side {
+  background-color: white;
+}
+
+#nsc-side-choose {
   order: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  width: 40%;
+  justify-content: flex-start;
+  align-items: stretch;
   height: 100vh;
-  background-color: antiquewhite;
-  padding: 10px;
+  overflow: hidden;
 }
 
-.nsc-side .nsc-top {
+#nsc-side-choose .nsc-top {
   font-size: 1rem;
   text-align: center;
 }
 
-.nsc-side .nsc-middle {
-  overflow: auto;
-  width: 99%;
+#nsc-side-choose .nsc-middle {
+  background-clip: content-box;
+  padding-right: 15px;
+  padding-left: 15px;
+  /* height: calc(100vh - 180px); */
+  overflow-x: auto;
 }
 
-.nsc-side .nsc-bottom {
+.nsc-middle .row {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+#nsc-side-choose .nsc-bottom {
   width: 100%;
   padding: 5px;
   text-align: center;
+  border-top: solid 1px #eee;
   /* padding-bottom: 20px; */
+}
+
+#nsc-side-choose a {
+  color: rgb(255, 84, 0);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+#nsc-side-result {
+  order: 1;
+  background-color: white;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  overflow: auto;
+}
+
+#nsc-side-result #result-middle {
+  background-clip: content-box;
+  /* overflow-x: auto; */
+}
+
+#nsc-side-result #result-bottom {
+  width: 100%;
+  /* padding: 5px; */
+  text-align: center;
+  /* padding-bottom: 20px; */
+}
+
+.nsc-box {
+  font-size: 1.2rem;
+  cursor: pointer;
+  border: solid 1px #3e3e3e;
+  color: #3e3e3e;
+}
+
+/* .nsc-box:hover {
+  border: solid rgb(255, 84, 0);
+  color: rgb(255, 84, 0);
+} */
+
+.nsc-selected {
+  /* font-weight: 500; */
+  border: solid 1.5px rgb(255, 84, 0) !important;
+  color: rgb(255, 84, 0) !important;
+  border: solid 1px;
+}
+
+.label-selected {
+  font-weight: 500;
+  color: rgb(255, 84, 0);
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+#nsc-nav-tab {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.nav-tabs .nsc-nav-link:hover {
+  background-color: white;
+}
+
+.nsc-nav-link {
+  font-size: 0.9rem;
+  margin: 2px;
+  padding: 4px 6px;
+  width: 110px;
+}
+
+#nsc-nav-tab .nsc-nav-link.active {
+  background-color: #f1f1f1 !important;
+  color: #333;
+}
+
+.nsc-mobile {
+  display: none !important;
+}
+
+.nsc-mobile.active {
+  display: block !important;
+}
+
+.nsc-desktop {
+  display: block !important;
+}
+
+.nsc-mobile-control-button {
+  padding: 15px;
+  color: white;
+  background-color: var(--primary-text-color);
+  margin-left: 1px;
+}
+
+.nsc-mobile-control-button:hover {
+  color: black;
+}
+
+.nsc-mobile-control-toggle {
+  border-right: solid 1px #eee;
+}
+
+.nsc-mobile-control-toggle:hover {
+  color: #ff5400;
+}
+
+@media (max-width: 900px) {
+  #nsc-side-choose {
+    height: auto;
+  }
+
+  #nsc-side-result {
+    height: auto;
+  }
+
+  .carousel .nsc-backboard {
+    margin: 50px 0;
+  }
 }

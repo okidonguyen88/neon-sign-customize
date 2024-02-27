@@ -8,17 +8,17 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              https://sample.com
- * @since             1.0.1
+ * @link              https://nguyenfoolish.com
+ * @since             2.0.0
  * @package           Neon_Sign_Customize
  *
  * @wordpress-plugin
  * Plugin Name:       Neon Sign Customize
- * Plugin URI:        https://sample.com
+ * Plugin URI:        https://nguyenfoolish.com
  * Description:       Neon Sign Customize
- * Version:           1.0.1
- * Author:            Okido Nguyễn
- * Author URI:        https://sample.com
+ * Version:           3.0.0
+ * Author:            Nguyên Foolish
+ * Author URI:        https://nguyenfoolish.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       neon-sign-customize
@@ -83,7 +83,7 @@ function run_neon_sign_customize()
 
 	add_action('init', 'register_neon_sign_product_type');
 	add_filter('product_type_selector', 'add_neon_sign_product');
-	add_filter('woocommerce_product_data_tabs', 'add_custom_fields_tab');
+	// add_filter('woocommerce_product_data_tabs', 'add_custom_fields_tab');
 
 	$plugin = new Neon_Sign_Customize();
 	$plugin->run();

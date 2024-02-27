@@ -1,3 +1,1 @@
-jQuery(document).ready(function ($) {
-  // update price
-});
+jQuery(document).ready(function ($) {});

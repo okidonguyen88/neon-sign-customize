@@ -113,9 +113,11 @@ class Neon_Sign_Customize_Public
 			$custom_size = sanitize_text_field($_POST['custom_size']);
 			$custom_backboard = sanitize_text_field($_POST['custom_backboard']);
 			$custom_backboard_color = sanitize_text_field($_POST['custom_backboard_color']);
-			$custom_backboard_material = sanitize_text_field($_POST['custom_backboard_material']);
+			$custom_material = sanitize_text_field($_POST['custom_material']);
 			$custom_jacket = sanitize_text_field($_POST['custom_jacket']);
+			$custom_mounting = sanitize_text_field($_POST['custom_mounting']);
 			$custom_remote_control = sanitize_text_field($_POST['custom_remote_control']);
+			$custom_plug_type = sanitize_text_field($_POST['custom_plug_type']);
 			$custom_cable_color = sanitize_text_field($_POST['custom_cable_color']);
 			$custom_special = sanitize_text_field($_POST['custom_special']);
 			// Sanitize other custom data fields here			
@@ -142,9 +144,11 @@ class Neon_Sign_Customize_Public
 					'_custom_size' => $custom_size,
 					'_custom_backboard' => $custom_backboard,
 					'_custom_backboard_color' => $custom_backboard_color,
-					'_custom_backboard_material' => $custom_backboard_material,
+					'_custom_material' => $custom_material,
 					'_custom_jacket' => $custom_jacket,
+					'_custom_mounting' => $custom_mounting,
 					'_custom_remote_control' => $custom_remote_control,
+					'_custom_plug_type' => $custom_plug_type,
 					'_custom_cable_color' => $custom_cable_color,
 					'_custom_special' => $custom_special,
 					// Add other custom data fields here
@@ -155,6 +159,57 @@ class Neon_Sign_Customize_Public
 
 			echo 'success';
 		}
+
+		wp_die();
+
+	}
+
+	public function session_save_ajax()
+	{
+		session_start();
+		if (isset($_POST['custom_text'])) {
+			$_SESSION['neon-size']['text'] = $_POST['custom_text'];
+		}
+		if (isset($_POST['custom_font'])) {
+			$_SESSION['neon-size']['font'] = $_POST['custom_font'];
+		}
+		if (isset($_POST['custom_color'])) {
+			$_SESSION['neon-size']['color'] = $_POST['custom_color'];
+		}
+		if (isset($_POST['custom_size'])) {
+			$_SESSION['neon-size']['size'] = $_POST['custom_size'];
+		}
+		if (isset($_POST['custom_backboard'])) {
+			$_SESSION['neon-size']['backboard'] = $_POST['custom_backboard'];
+		}
+		if (isset($_POST['custom_backboard_color'])) {
+			$_SESSION['neon-size']['backboard_color'] = $_POST['custom_backboard_color'];
+		}
+		if (isset($_POST['custom_material'])) {
+			$_SESSION['neon-size']['material'] = $_POST['custom_material'];
+		}
+		if (isset($_POST['custom_jacket'])) {
+			$_SESSION['neon-size']['jacket'] = $_POST['custom_jacket'];
+		}
+		if (isset($_POST['custom_mounting'])) {
+			$_SESSION['neon-size']['mounting'] = $_POST['custom_mounting'];
+		}
+		if (isset($_POST['custom_remote_control'])) {
+			$_SESSION['neon-size']['remote_control'] = $_POST['custom_remote_control'];
+		}
+		if (isset($_POST['custom_plug_type'])) {
+			$_SESSION['neon-size']['plug_type'] = $_POST['custom_plug_type'];
+		}
+		if (isset($_POST['custom_cable_color'])) {
+			$_SESSION['neon-size']['cable_color'] = $_POST['custom_cable_color'];
+		}
+		if (isset($_POST['custom_special'])) {
+			$_SESSION['neon-size']['special'] = $_POST['custom_special'];
+		}
+		if (isset($_POST['custom_price'])) {
+			$_SESSION['neon-size']['price'] = $_POST['custom_price'];
+		}
+		echo json_encode(array('message' => 'success'));
 
 		wp_die();
 
